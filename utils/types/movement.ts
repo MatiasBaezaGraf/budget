@@ -9,6 +9,8 @@ export interface Movement extends BaseEntity {
 	account_id: number;
 	category_id: number;
 	date: string;
+	previous_account_balance: number;
+	current_account_balance: number;
 	// Relaciones opcionales
 	account?: Account;
 	category?: Category;

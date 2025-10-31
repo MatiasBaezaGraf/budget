@@ -6,7 +6,6 @@ import type { Card } from "./card";
 export interface Account extends BaseEntity {
 	name: string;
 	type: AccountType;
-	balance: number;
 	currency: string;
 	// Relaciones opcionales
 	movements?: Movement[];

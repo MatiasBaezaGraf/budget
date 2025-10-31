@@ -6,7 +6,9 @@ import { Account } from "@/utils/types/account";
 export const getAccounts = async () => {
 	const supabase = await createClient();
 
-	const { data, error } = await supabase.from("Accounts").select("*");
+	const { data, error } = await supabase
+		.from("accounts_with_balance")
+		.select("*");
 
 	if (error) {
 		throw new Error(error.message);
