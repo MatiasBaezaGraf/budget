@@ -1,15 +1,14 @@
-import { BalanceCard } from "@/components/home/BalanceCard";
-import { getAccounts } from "@/actions/accounts/getAccounts";
+import { getMovements } from "@/actions/movements/getMovements";
+import { getAccountsBalances } from "@/actions/accounts/getAccountsBalances";
+import { getAccountsMetadata } from "@/actions/accounts/getAccountsMetadata";
+import { HomeClientManager } from "@/components/home/HomeClientManager";
 
 export default function Home() {
 	return (
-		<div className="flex flex-col items-center justify-center w-full gap-6">
-			{/* <div className="flex flex-col items-center justify-center w-full gap-1">
-				<h1 className="text-4xl font-bold text-white">Finanzas</h1>
-				<span className="text-sm text-white/80">Gestiona tu dinero</span>
-			</div> */}
-
-			<BalanceCard getAccounts={getAccounts} />
-		</div>
+		<HomeClientManager
+			getMovements={getMovements}
+			getAccountsBalances={getAccountsBalances}
+			getAccountsMetadata={getAccountsMetadata}
+		/>
 	);
 }

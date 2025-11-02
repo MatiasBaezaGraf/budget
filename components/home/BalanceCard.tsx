@@ -12,24 +12,16 @@ interface BalanceData {
 	accountNumber: number;
 }
 
-export const BalanceCard = ({
-	getAccounts,
-}: {
-	getAccounts: () => Promise<Account[]>;
-}) => {
-	const [balanceData, setBalanceData] = useState<BalanceData | null>(null);
-
-	useEffect(() => {
-		getAccounts().then((accounts) => {
-			setBalanceData({
-				totalBalance: accounts.reduce(
-					(acc, account) => acc + account.balance,
+export const BalanceCard = ({ accounts }: { accounts: Account[] | null }) => {
+	const balanceData: BalanceData | null = accounts
+		? {
+				totalBalance: accounts?.reduce(
+					(acc, account) => acc + (account.balance || 0),
 					0
 				),
-				accountNumber: accounts.length,
-			});
-		});
-	}, []);
+				accountNumber: accounts?.length,
+		  }
+		: null;
 
 	return (
 		<Card className="w-full items-center gap-4">

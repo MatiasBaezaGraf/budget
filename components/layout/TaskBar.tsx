@@ -16,11 +16,23 @@ export const TaskBar = () => {
 				className="basis-1/4 h-full flex items-center justify-center"
 			>
 				<Button
-					variant="glass"
+					variant={pathname === "/" ? "glass" : "ghost"}
 					className="flex-col items-center w-full h-full rounded-2xl"
 				>
-					<HomeIcon className="w-6 h-6 text-white" />
-					<span className="text-xs text-white">Inicio</span>
+					<HomeIcon
+						className={cn(
+							"size-6",
+							pathname === "/" ? "text-white" : "text-white/50"
+						)}
+					/>
+					<span
+						className={cn(
+							"text-xs",
+							pathname === "/" ? "text-white" : "text-white/50"
+						)}
+					>
+						Inicio
+					</span>
 				</Button>
 			</Link>
 			<Link
@@ -28,11 +40,23 @@ export const TaskBar = () => {
 				className="basis-1/4 h-full flex items-center justify-center"
 			>
 				<Button
-					variant="link"
+					variant={pathname === "/accounts" ? "glass" : "ghost"}
 					className="flex-col items-center w-full h-full rounded-2xl"
 				>
-					<ListIcon className="w-6 h-6 text-white/50" />
-					<span className="text-xs text-white/50">Cuentas</span>
+					<ListIcon
+						className={cn(
+							"size-6",
+							pathname === "/accounts" ? "text-white" : "text-white/50"
+						)}
+					/>
+					<span
+						className={cn(
+							"text-xs",
+							pathname === "/accounts" ? "text-white" : "text-white/50"
+						)}
+					>
+						Cuentas
+					</span>
 				</Button>
 			</Link>
 			<Link
@@ -43,8 +67,20 @@ export const TaskBar = () => {
 					variant="link"
 					className="flex-col items-center w-full h-full rounded-2xl"
 				>
-					<CreditCard className="w-6 h-6 text-white/50" />
-					<span className="text-xs text-white/50">Tarjetas</span>
+					<CreditCard
+						className={cn(
+							"size-6",
+							pathname === "/cards" ? "text-white" : "text-white/50"
+						)}
+					/>
+					<span
+						className={cn(
+							"text-xs",
+							pathname === "/cards" ? "text-white" : "text-white/50"
+						)}
+					>
+						Tarjetas
+					</span>
 				</Button>
 			</Link>
 
@@ -56,8 +92,20 @@ export const TaskBar = () => {
 					variant="link"
 					className="flex-col items-center w-full h-full rounded-2xl"
 				>
-					<CalendarIcon className="w-6 h-6 text-white/50" />
-					<span className="text-xs text-white/50">Mensuales</span>
+					<CalendarIcon
+						className={cn(
+							"size-6",
+							pathname === "/monthly" ? "text-white" : "text-white/50"
+						)}
+					/>
+					<span
+						className={cn(
+							"text-xs",
+							pathname === "/monthly" ? "text-white" : "text-white/50"
+						)}
+					>
+						Mensuales
+					</span>
 				</Button>
 			</Link>
 		</div>

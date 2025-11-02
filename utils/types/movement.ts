@@ -11,9 +11,12 @@ export interface Movement extends BaseEntity {
 	date: string;
 	previous_account_balance: number;
 	current_account_balance: number;
+	// Campos auxiliares
+	category_name?: string;
+	category_type?: string;
+	category_icon?: string;
 	// Relaciones opcionales
 	account?: Account;
-	category?: Category;
 }
 
 export enum FlowType {

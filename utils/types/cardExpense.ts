@@ -2,6 +2,7 @@ import { BaseEntity } from "./base";
 import type { Card } from "./card";
 import type { CardResume } from "./cardResume";
 import type { CardInstallmentPurchase } from "./cardInstallmentPurchase";
+import { Category } from "./category";
 
 export interface CardExpense extends BaseEntity {
 	card_id: number;
@@ -16,4 +17,5 @@ export interface CardExpense extends BaseEntity {
 	card?: Card;
 	card_resume?: CardResume;
 	card_installment_purchase?: CardInstallmentPurchase | null;
+	category?: Category;
 }
