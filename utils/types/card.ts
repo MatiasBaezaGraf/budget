@@ -7,8 +7,10 @@ export interface Card extends BaseEntity {
 	name: string;
 	limit_amount: number;
 	linked_account_id: number;
+	// Campos auxiliares
+	linked_account_name?: string;
+
 	// Relaciones opcionales
-	linked_account?: Account | null;
 	card_resumes?: CardResume[];
 	installment_purchases?: CardInstallmentPurchase[];
 }

@@ -4,6 +4,7 @@ import { Loader2 } from "lucide-react";
 import { formatCurrency } from "@/utils/utils";
 import { DynamicIcon } from "../ui/dynamic-icon";
 import { format } from "date-fns";
+import { Skeleton } from "../ui/skeleton";
 
 export const RecentMovementsCard = ({
 	movements,
@@ -13,10 +14,10 @@ export const RecentMovementsCard = ({
 	return (
 		<Card className="w-full items-start gap-4">
 			<h2 className="text-2xl font-bold">Movimientos Recientes</h2>
-			{movements == null && <Loader2 className="w-4 h-4 animate-spin" />}
-			{movements != null && (
+
+			{movements != null ? (
 				<div className="flex flex-col gap-4 items-stretch w-full">
-					{movements.slice(0, 5).map((movement) => (
+					{movements.slice(0, 4).map((movement) => (
 						<Card
 							key={movement.id}
 							className="flex flex-row items-center justify-between gap-2 rounded-xl p-4 w-full"
@@ -55,6 +56,13 @@ export const RecentMovementsCard = ({
 							</div>
 						</Card>
 					))}
+				</div>
+			) : (
+				<div className="flex flex-col gap-4 items-stretch w-full">
+					<Skeleton className="w-full h-20 rounded-xl" />
+					<Skeleton className="w-full h-20 rounded-xl" />
+					<Skeleton className="w-full h-20 rounded-xl" />
+					<Skeleton className="w-full h-20 rounded-xl" />
 				</div>
 			)}
 		</Card>

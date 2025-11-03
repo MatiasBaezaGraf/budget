@@ -16,6 +16,7 @@ import { DynamicIcon } from "../ui/dynamic-icon";
 import { AccountTypeIconName } from "@/utils/types/account";
 import { useModalStore } from "@/stores/useModalStore";
 import { useCacheStore } from "@/stores/useCacheStore";
+import { Skeleton } from "../ui/skeleton";
 
 export const AccountsClientManager = ({
 	getAccountsMetadata,
@@ -73,53 +74,60 @@ export const AccountsClientManager = ({
 
 			<Card className="w-full items-center gap-2">
 				<h2 className="text-base text-white/50">Balance Total</h2>
-				<p className="text-3xl font-bold">
-					${" "}
-					{formatCurrency(
-						balances?.reduce((acc, balance) => acc + balance.balance, 0) || 0
-					)}
-				</p>
+				{balances != null ? (
+					<p className="text-3xl font-bold">
+						${" "}
+						{formatCurrency(
+							balances?.reduce((acc, balance) => acc + balance.balance, 0) || 0
+						)}
+					</p>
+				) : (
+					<Skeleton className="w-36 h-8 my-0.5" />
+				)}
 			</Card>
 
-			<div className="flex flex-col items-center justify-center w-full gap-2">
-				{accounts == null && (
-					<Card className="w-full items-center flex-row justify-between gap-2">
-						<Loader2 className="w-4 h-4 animate-spin" />
-					</Card>
-				)}
-				{accounts?.map((account) => (
-					<Card
-						key={account.id}
-						className="w-full items-center flex-row justify-between gap-2"
-					>
-						<div className="flex flex-row items-center gap-4">
-							<div className="flex items-center justify-center p-3 bg-white/10 rounded-xl">
-								<DynamicIcon
-									name={AccountTypeIconName[account.type] as any}
-									className="size-6"
-								/>
+			{accounts != null ? (
+				<div className="flex flex-col items-center justify-center w-full gap-2">
+					{accounts?.map((account) => (
+						<Card
+							key={account.id}
+							className="w-full items-center flex-row justify-between gap-2"
+						>
+							<div className="flex flex-row items-center gap-4">
+								<div className="flex items-center justify-center p-3 bg-white/10 rounded-xl">
+									<DynamicIcon
+										name={AccountTypeIconName[account.type] as any}
+										className="size-6"
+									/>
+								</div>
+								<div className="flex flex-col items-start">
+									<h2 className="text-lg text-white">{account.name}</h2>
+									<p className="text-sm text-white/50">
+										{AccountTypeLabel[account.type]}
+									</p>
+									<p className="text-xl font-bold">
+										$ {formatCurrency(account.balance || 0)}
+									</p>
+								</div>
 							</div>
-							<div className="flex flex-col items-start">
-								<h2 className="text-lg text-white">{account.name}</h2>
-								<p className="text-sm text-white/50">
-									{AccountTypeLabel[account.type]}
-								</p>
-								<p className="text-xl font-bold">
-									$ {formatCurrency(account.balance || 0)}
-								</p>
+							<div className="flex flex-row items-center gap-2">
+								<Button size="icon" variant="glass">
+									<Pencil className="size-4" />
+								</Button>
+								<Button size="icon" variant="glass">
+									<Trash className="size-4" />
+								</Button>
 							</div>
-						</div>
-						<div className="flex flex-row items-center gap-2">
-							<Button size="icon" variant="glass">
-								<Pencil className="size-4" />
-							</Button>
-							<Button size="icon" variant="glass">
-								<Trash className="size-4" />
-							</Button>
-						</div>
-					</Card>
-				))}
-			</div>
+						</Card>
+					))}
+				</div>
+			) : (
+				<div className="flex flex-col items-center justify-center w-full gap-2">
+					<Skeleton className="w-full h-30 rounded-3xl" />
+					<Skeleton className="w-full h-30 rounded-3xl" />
+					<Skeleton className="w-full h-30 rounded-3xl" />
+				</div>
+			)}
 		</div>
 	);
 };
