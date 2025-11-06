@@ -9,7 +9,6 @@ export interface CardResume extends BaseEntity {
 	from_date: string;
 	to_date: string | null;
 	due_date: string | null;
-	amount: number | null;
 	carried_amount: number | null;
 	movement_id: number | null;
 	// Relaciones opcionales
